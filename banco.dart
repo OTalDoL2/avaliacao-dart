@@ -1,15 +1,16 @@
 void main() {
-  Banco contaBancaria = Banco();
-  contaBancaria.agencia = "15614-6";
-  contaBancaria.conta = "646465";
-  contaBancaria.nome = "Lucas Ramos";
+  Banco contaBancaria = Banco("15614-6", "646465", "Lucas Ramos", 4, 2, 2004);
+  // contaBancaria.agencia = "15614-6";
+  // contaBancaria.conta = "646465";
+  // contaBancaria.nome = "Lucas Ramos";
+  // contaBancaria.dia = 4;
+  // contaBancaria.mes = 2;
+  // contaBancaria.ano = 2004;
+
+
   contaBancaria.nome;
   contaBancaria.visualizarAgencia;
   contaBancaria.visualizarConta;
-  contaBancaria.dia = 4;
-  contaBancaria.mes = 2;
-  contaBancaria.ano = 2004;
-  contaBancaria.ano = 2004;
   contaBancaria.visualizarSaldo;
   contaBancaria.receber = 500;
   contaBancaria.visualizarSaldo;
@@ -21,20 +22,20 @@ void main() {
   print(contaBancaria.dataAniversario);
 
   print("=-========================================================");
-  // Banco outraContaBancaria =
-  //     Banco("15614-6", "646465", "Thalita Vitoria", 20, 2, 2003);
-  // outraContaBancaria.visualizarAgencia;
-  // outraContaBancaria.visualizarConta;
+  Banco outraContaBancaria = Banco("15614-6", "646465", "Thalita Vitoria", 20, 2, 2003);
+  outraContaBancaria.nome;
+  outraContaBancaria.visualizarAgencia;
+  outraContaBancaria.visualizarConta;
 
-  // outraContaBancaria.visualizarSaldo;
-  // outraContaBancaria.receber = 500;
-  // outraContaBancaria.visualizarSaldo;
-  // outraContaBancaria.sacar = 10;
-  // outraContaBancaria.visualizarSaldo;
-  // outraContaBancaria.sacar = 1000;
-  // outraContaBancaria.visualizarSaldo;
-  // outraContaBancaria.verificarChequeEspecial;
-  // print(outraContaBancaria.dataAniversario);
+  outraContaBancaria.visualizarSaldo;
+  outraContaBancaria.receber = 500;
+  outraContaBancaria.visualizarSaldo;
+  outraContaBancaria.sacar = 10;
+  outraContaBancaria.visualizarSaldo;
+  outraContaBancaria.sacar = 1000;
+  outraContaBancaria.visualizarSaldo;
+  outraContaBancaria.verificarChequeEspecial;
+  print(outraContaBancaria.dataAniversario);
 
   // int data = 4;
   // int dataa = 2;
@@ -55,40 +56,50 @@ class Banco {
   double _chequeEspecial = 1500;
   double _limiteSaqueDiario = 1000;
 
-  // {
-  //   // _agencia = agencia;
-  //   // _conta = conta;
-  //   // _nomeCliente = nome;
-  //   // _diaNascimentoCliente = dia;
-  //   // _mesNascimentoCliente = mes;
-  //   // _anoNascimentoCliente = ano;
-  // }
+  Banco(String agencia, String conta, String nome, int dia, int mes, int ano){
+    _agencia = agencia;
+    _conta = conta;
+    _nomeCliente = nome;
+    _diaNascimentoCliente = dia;
+    _mesNascimentoCliente = mes;
+    _anoNascimentoCliente = ano;
+  }
+
+  
 
   String? get visualizarAgencia {
     print("O número da agência é $_agencia");
     return _agencia;
   }
 
-  set agencia(String? agencia) {
-    _agencia = agencia;
-  }
+  // set agencia(String? agencia) {
+  //   _agencia = agencia;
+  // }
 
   String? get visualizarConta {
     print("O número da conta é $_conta");
     return _conta;
   }
 
-  set conta(String? conta) {
-    _conta = conta;
-  }
+  // set conta(String? conta) {
+  //   _conta = conta;
+  // }
 
   String? get nome {
     print("Nome: $_nomeCliente");
     return _nomeCliente;
   }
 
-  set nome(String? nome) {
-    _nomeCliente = nome;
+  // set nome(String? nome) {
+  //   _nomeCliente = nome;
+  // }
+
+  String corrigeData(int? data){
+    if(data != null && data < 10){
+      return "0$data";
+    } else {
+      return data.toString();
+    }
   }
 
   int? get dia {
@@ -96,27 +107,27 @@ class Banco {
     return _diaNascimentoCliente;
   }
 
-  set dia(int? dia) {
-    _diaNascimentoCliente = dia;
-  }
+  // set dia(int? dia) {
+  //   _diaNascimentoCliente = dia;
+  // }
 
   int? get mes {
     print("Mês em que o cliente nasceu: $_mesNascimentoCliente");
     return _mesNascimentoCliente;
   }
 
-  set mes(int? mes) {
-    _mesNascimentoCliente = mes;
-  }
+  // set mes(int? mes) {
+  //   _mesNascimentoCliente = mes;
+  // }
 
   int? get ano {
     print("Ano em que o cliente nasceu: $_anoNascimentoCliente");
     return _anoNascimentoCliente;
   }
 
-  set ano(int? ano) {
-    _anoNascimentoCliente = ano;
-  }
+  // set ano(int? ano) {
+  //   _anoNascimentoCliente = ano;
+  // }
 
   double? get visualizarSaldo {
     print("Saldo: $_saldo");
@@ -164,8 +175,8 @@ class Banco {
 
   String? get dataAniversario {
     if (_dataNascimento == null) {
-      _dataNascimento =
-          "$_diaNascimentoCliente/$_mesNascimentoCliente/$_anoNascimentoCliente";
+      
+      _dataNascimento = "${corrigeData(_diaNascimentoCliente)}/${corrigeData(_mesNascimentoCliente)}/$_anoNascimentoCliente";
     }
     return _dataNascimento;
   }
